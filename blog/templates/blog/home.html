@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class='col-sm-10 home_section mt-5'>
+   <h3>Home page</h3>
+
+   {% for fm in form %}
+   
+   <div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">{{fm.title}}</h1>
+    <p class="lead ">{{fm.desc}}</p>
+  </div>
+</div>
+   
+   {% endfor %}
+   
+
+
+</div>
+
+
+
+
+
+
+{% endblock content %}

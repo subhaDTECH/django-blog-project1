@@ -1,0 +1,67 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+ 
+<div  class="col-sm-8 mt-2 mx-auto">
+<div class="dashboared_form">
+<h1 class="text-center alert alert-primary">dashboared page</h1> 
+
+
+                      {% if messages %}
+
+                      {% for message in messages %}
+                      
+                      <p  {% if message.tags %}   class="alert alert-{{message.tags}}" {% endif %}>{{message}}</p>
+                      
+                      {% endfor %}
+                       
+                      
+                      {% endif %}
+
+
+<a href="{% url 'addpost' %}" class="btn btn-success mb-2">Add new</a>
+    {% if post %}
+    <table class="table table-hover">
+  <thead class="alert alert-info">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Desc</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody class="text-white bg-dark">
+  {% for pst in post %}
+    <tr>
+      
+      <td>{{pst.id}}</td>
+      <td>{{pst.title}}</td>
+      <td>{{pst.desc}}</td>
+      <td>
+      <a href="{% url 'updatepost' pst.id %}" class="btn btn-warning mb-3">Edit</a>
+       {% if  %}
+      <form action=" {% url 'deletepost' pst.id %}" method="post" class="d-inline mt-3">
+      {% csrf_token %}
+       <input type="submit" value="Delete" class="btn btn-danger">
+      </form>
+      {% endif %}
+      
+      </td>
+    </tr>
+    {% endfor %}
+   
+    
+  </tbody>
+</table>
+    
+    
+    
+    
+    
+    {% endif %}
+
+
+</div>
+
+</div>
+
+{% endblock content %}
